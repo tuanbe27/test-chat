@@ -12,9 +12,28 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: () => uuidv4().replace(/\-/g, ''),
     },
-    firstName: String,
-    lastName: String,
-    type: String,
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      select: false,
+    },
+    type: {
+      type: String,
+      enum: ['consumer', 'support'],
+    },
   },
   {
     timestamps: true,

@@ -5,6 +5,10 @@ import UserModel, { USER_TYPES } from '../models/User.js';
 
 export default {
   onGetAllUsers: async (req, res) => {
+    console.table({
+      socketId: [...global.io.sockets.sockets][0][0],
+      url: '/users',
+    });
     try {
       const users = await UserModel.getUsers();
       return res.status(200).json({ success: true, users });

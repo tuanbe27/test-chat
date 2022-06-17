@@ -32,7 +32,7 @@ export default {
           type: { type: types.enum, options: { enum: USER_TYPES } },
         },
       }));
-      if (!validation.success) return res.status(400).json(validation);
+      if (!validation.success) return res.status(400).json({ ...validation });
 
       const { firstName, lastName, type } = req.body;
       const user = await UserModel.createUser(firstName, lastName, type);
